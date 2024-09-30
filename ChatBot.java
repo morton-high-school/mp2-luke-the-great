@@ -15,13 +15,44 @@ public class ChatBot{
   */
   public String getResponse(String statement){
     String response = "";
-    if(statement.indexOf("no")>=0){
+    statement.trim();
+
+    
+    //statement.indexOf("no")
+    if(findKeyword(statement, "no", 0)>=0){
       response = "Why so negative?";
-    }else if(statement.indexOf("mother")>0 ||  statement.indexOf("father")>0 || statement.indexOf("sister")>0 || statement.indexOf("brother")>0){
+    }else if(findKeyword(statement, "mother", 0)>-1 ||  findKeyword(statement, "father", 0)>-1 || findKeyword(statement, "sister", 0)>-1 || findKeyword(statement, "brother", 0)>-1){
+      //statement.indexOf("mother")
+      //statement.indexOf("father")
+      //statement.indexOf("sister")
+      //statement.indexOf("brother")
       response = "Tell me more about your family.";
+    }else if(findKeyword(statement, "cat", 0)>-1 || findKeyword(statement, "dog", 0)>-1){
+      //statement.indexOf("cat")
+      //statement.indexOf("dog")
+      response = "Tell me more about your pets.";
+    }else if(findKeyword(statement, "Zeller", 0)>-1 || findKeyword(statement, "zeller", 0)>-1){
+      //statement.indexOf("Zeller")
+      //statement.indexOf("zeller")
+      response = "YIPPEEEEE!!!";
+    }else if(statement.length()==0){
+      response = "please enter some text.";
+    }else if(findKeyword(statement, "hello", 0)>-1){
+      //statement.indexOf("hello")
+      response = "hello!";
+    }else if(findKeyword(statement, "milk", 0)>-1){
+      //statement.indexOf("milk")
+      response = "yummers";
+    }else if(findKeyword(statement, "Fortnite", 0)>-1 || findKeyword(statement, "fortnite", 0)>-1){
+      //statement.indexOf("Fortnite")
+      //statement.indexOf("fortnite")
+      response = "Best game OF ALL TIME!!!!";
     }else{
       response = getRandomResponse();
     }
+
+    
+    
     return response;
   }
 
@@ -30,7 +61,7 @@ public class ChatBot{
   * @return a non-commital string
   */
   private String getRandomResponse(){
-    int numberOfResponses = 4;
+    int numberOfResponses = 6;
     double r = Math.random();
     int whichResponse = (int)(r*numberOfResponses);
     String response = "";
@@ -43,6 +74,10 @@ public class ChatBot{
       response = "Do you really think so?";
     }else if(whichResponse==3){
       response = "You don't say.";
+    }else if(whichResponse==4){
+      response = "very cool";
+    }else if(whichResponse==5){
+      response = "say something cooler!";
     }
     return response;
   }
